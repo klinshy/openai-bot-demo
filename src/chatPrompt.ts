@@ -1,6 +1,6 @@
 import {generatePlacesPrompt} from "./places";
 import {generatePeopleByPlacesPrompt, generatePeopleByRolePrompt, isTeamMember} from "./people";
-import {RemotePlayer} from "@workadventure/iframe-api-typings/front/Api/Iframe/Players/RemotePlayer";
+import {RemotePlayer} from "@workadventure/iframe-api-typings/play/src/front/Api/Iframe/Players/RemotePlayer";
 
 const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' });
 

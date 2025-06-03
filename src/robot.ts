@@ -1,10 +1,46 @@
 import {throttle} from "throttle-debounce";
 import {getMovePrompt} from "./movePrompt";
 import OpenAI from "openai";
-import {RemotePlayer} from "@workadventure/iframe-api-typings/front/Api/Iframe/Players/RemotePlayer";
+import {RemotePlayer} from "@workadventure/iframe-api-typings/play/src/front/Api/Iframe/Players/RemotePlayer";
 import {getChatPrompt, userJoinedChat} from "./chatPrompt";
 
 // TODO: import this file ONLY in robot mode
+WA.onInit().then(async () => {
+    if (WA.room.hashParameters.bot) {
+        const initialPosition = await WA.player.getPosition();
+        const { x: startX, y: startY } = initialPosition;
+
+        let isInProximityMeeting = false;
+
+        const moveBotRandomly = () => {
+            if (isInProximityMeeting) return;
+
+            const minX = Math.max(startX - 32, 0);
+            const maxX = startX + 32;
+            const minY = Math.max(startY - 32, 0);
+            const maxY = startY + 32;
+
+            const randomX = Math.random() * (maxX - minX) + minX;
+            const randomY = Math.random() * (maxY - minY) + minY;
+
+            console.log(`Bot moving to random position: x=${randomX}, y=${randomY}`);
+            WA.player.moveTo(randomX, randomY, 1);
+        };
+
+        const intervalId = setInterval(moveBotRandomly, Math.random() * 5000 + 2000); // Random interval between 2 to 7 seconds
+
+        WA.player.proximityMeeting.onJoin().subscribe(() => {
+            console.log("Bot joined a proximity meeting, pausing movement.");
+            isInProximityMeeting = true;
+        });
+
+        WA.player.proximityMeeting.onLeave().subscribe(() => {
+            console.log("Bot left a proximity meeting, resuming movement.");
+            isInProximityMeeting = false;
+        });
+    }
+});
+
 
 const throttledMovePrompt = throttle(30000, async () => {
     // TODO: do this only if in "waiting mode"
@@ -39,6 +75,7 @@ const throttledMovePrompt = throttle(30000, async () => {
     noTrailing: false,
     noLeading: false,
 });
+
 
 class Robot {
     private mode: "waiting" | "chatting" = "waiting";
@@ -89,7 +126,7 @@ class Robot {
 
                 this.chatHistory.push({
                     role: "user",
-                    player: event.author,
+                    player: event.author as RemotePlayer,
                     content: event.author.name + ": " + message,
                 });
 
