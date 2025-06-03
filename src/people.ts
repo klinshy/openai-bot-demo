@@ -1,6 +1,5 @@
-import {RemotePlayerInterface} from "@workadventure/iframe-api-typings/front/Api/Iframe/Players/RemotePlayer";
+import {RemotePlayerInterface} from "@workadventure/iframe-api-typings/play/src/front/Api/Iframe/Players/RemotePlayer";
 import {z} from "zod";
-
 
 export function findPeopleByPlace(): Map<string|undefined, Array<RemotePlayerInterface>> {
     const players = WA.players.list();
