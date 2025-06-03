@@ -3,8 +3,8 @@ import {getMovePrompt} from "./movePrompt";
 import OpenAI from "openai";
 import {RemotePlayer} from "@workadventure/iframe-api-typings/play/src/front/Api/Iframe/Players/RemotePlayer";
 import {getChatPrompt, userJoinedChat} from "./chatPrompt";
-
-// TODO: import this file ONLY in robot mode 
+//
+// TODO:  import this file ONLY in robot mode 
 WA.onInit().then(async () => {
     if (WA.room.hashParameters.bot) {
         const initialPosition = await WA.player.getPosition();

@@ -54,7 +54,7 @@ WA.onInit().then(async () => {
         movement: true,
     });
 
-
+//
     await updateMyPlace();
 
     // Let's initialize the "tags" variable to expose our tags to others

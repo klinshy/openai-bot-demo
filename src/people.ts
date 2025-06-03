@@ -3,7 +3,7 @@ import {z} from "zod";
 
 export function findPeopleByPlace(): Map<string|undefined, Array<RemotePlayerInterface>> {
     const players = WA.players.list();
-
+//
     // TODO: deduplicate users name. If 2 users have the same name, let's rename one.
 
     const peopleByPlace = new Map<string|undefined, Array<RemotePlayerInterface>>();

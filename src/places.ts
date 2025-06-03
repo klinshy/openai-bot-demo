@@ -1,5 +1,5 @@
 import {getLayersMap, Properties} from "@workadventure/scripting-api-extra/dist";
-
+//
 
 let placesPromise: Promise<Map<string, string|undefined>>|undefined;
 

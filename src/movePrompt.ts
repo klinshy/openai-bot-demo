@@ -1,6 +1,6 @@
 import {generatePlacesPrompt} from "./places";
 import {generatePeopleByPlacesPrompt, generatePeopleByRolePrompt} from "./people";
-
+//
 
 export async function getMovePrompt(): Promise<string> {
     return `You are a bot living in a WorkAdventure map.
