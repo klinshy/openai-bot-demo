@@ -1,7 +1,7 @@
 import {throttle} from "throttle-debounce";
 import {getMovePrompt} from "./movePrompt";
 import OpenAI from "openai";
-import {RemotePlayer} from "@workadventure/iframe-api-typings/front/Api/Iframe/Players/RemotePlayer";
+import {RemotePlayer} from "@workadventure/iframe-api-typings/play/src/front/Api/Iframe/Players/RemotePlayer";
 import {getChatPrompt, userJoinedChat} from "./chatPrompt";
 
 // TODO: import this file ONLY in robot mode
@@ -89,7 +89,7 @@ class Robot {
 
                 this.chatHistory.push({
                     role: "user",
-                    player: event.author,
+                    player: event.author as RemotePlayer,
                     content: event.author.name + ": " + message,
                 });
 
