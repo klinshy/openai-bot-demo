@@ -6,6 +6,7 @@ import {getChatPrompt, userJoinedChat} from "./chatPrompt";
 //
 // TODO:  import this file ONLY in robot mode 
 WA.onInit().then(async () => {
+    console.log("robot.ts: Scripting API ready");
     if (WA.room.hashParameters.bot) {
         const initialPosition = await WA.player.getPosition();
         const { x: startX, y: startY } = initialPosition;
