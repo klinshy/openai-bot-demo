@@ -19,10 +19,13 @@
     "wa-map-optimizer-vite": "^1.1.25"
   },
   "dependencies": {
+    "@anatine/zod-openapi": "^2.2.8",
+    "@openai/realtime-api-beta": "github:mandryllo/openai-realtime-api-beta#feature/custom-model-selection",
     "@workadventure/scripting-api-extra": "^1.9.6",
     "npm": "^10.2.1",
     "openai": "^4.104.0",
     "throttle-debounce": "^5.0.0",
-    "zod": "^3.22.4"
+    "words-count": "^2.0.2",
+    "zod": "^3.25.64"
   }
 }
